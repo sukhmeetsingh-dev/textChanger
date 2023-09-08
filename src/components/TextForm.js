@@ -5,22 +5,26 @@ export default function TextForm(props) {
         // console.log("UpperCase was clicked" + text);
         let newText = text.toUpperCase();
         setText(newText)
+        props.showAlert("Converted to uppercase" , "success");
     }
 
     const handleloClick = () => {
         // console.log("UpperCase was clicked" + text);
         let newText = text.toLowerCase();
         setText(newText)
+        props.showAlert("Converted to lowercase" , "success");
     }
 
     const handleClearClick = () => {
         let newText = '';
         setText(newText)
+        props.showAlert("Text cleared" , "success");
     }
 
     const handleExtraSpaces = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" ")) 
+        props.showAlert("Extra spaces removed" , "success");
     }
     
     const handleOnChange = (event) => {
