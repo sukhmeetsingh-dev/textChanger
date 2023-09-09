@@ -5,10 +5,10 @@ import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import React, { useState } from 'react'
 import {
-  BrowserRouter as Router,
-  Switch,
+  BrowserRouter,
+  Routes,
   Route,
-  Link
+
 } from "react-router-dom";
 
 
@@ -31,30 +31,29 @@ function App() {
     if (mode === 'light') {
       setMode('dark');
       document.body.style.backgroundColor = '#042743';
-      showAlert("Dark mode has been enabled", "success");
+      // showAlert("Dark mode has been enabled", "success");
     }
     else {
       setMode('light');
       document.body.style.backgroundColor = 'white';
-      showAlert("Light mode has been enabled", "success");
+      // showAlert("Light mode has been enabled", "success");
     }
   }
   return (
     <>
-      <Router>
-        <Navbar title="Txtmo" aboutText="About" mode={mode} toggleMode={toggleMode} />
+      <BrowserRouter>
+        <Navbar title="Textmo" mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} />
         <div className="container my-3">
-          <Switch>
-            <Route exact path="/about">
-              <About />
-            </Route>
-            <Route exact path="/">
-              <TextForm showAlert={showAlert} heading="Enter the text to analyze" mode={mode} />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route path="/about" element={<About mode={mode} />} />
+
+            < Route path="/"
+              element={<TextForm heading="Enter the text to analyse: " mode={mode} />} />
+          </Routes>
         </div>
-      </Router>
+      </BrowserRouter>
+
     </>
   );
 }
